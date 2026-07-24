@@ -12,13 +12,13 @@
 
 <style>
   :root{
-    --paper: #F2F1EC;
-    --ink: #17170F;
-    --ink-soft: #55534C;
-    --line: #DAD8CE;
-    --accent: #2F5D57;
-    --accent-2: #C9F31D;
-    --accent-soft: #E3E9E1;
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --ink-soft: #464646;
+    --line: #DCDCDC;
+    --accent: #004EA7;
+    --accent-2: #003073;
+    --accent-soft: #E4EDF7;
     --white: #FFFFFF;
     --nav-h: 64px;
 
@@ -30,7 +30,8 @@
   html{ scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 
   body{
-    background: var(--paper);
+    background: linear-gradient(160deg, #000000 0%, #000000 30%, #003073 65%, #004EA7 100%);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: var(--sans);
     line-height: 1.5;
@@ -50,10 +51,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 32px;
-    background: rgba(242,241,236,0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
     z-index: 1000;
   }
 
@@ -61,6 +62,7 @@
     font-family: var(--serif);
     font-weight: 700;
     font-size: 1.05rem;
+    color: #FFFFFF;
   }
 
   .topnav .mark span{ color: var(--accent); }
@@ -74,7 +76,7 @@
   .navlinks a{
     font-size: 0.82rem;
     font-weight: 500;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.68);
     text-decoration: none;
     position: relative;
     padding: 6px 2px;
@@ -91,21 +93,21 @@
     transition: width 0.25s ease;
   }
 
-  .navlinks a:hover{ color: var(--ink); }
+  .navlinks a:hover{ color: #FFFFFF; }
   .navlinks a.active{ color: var(--accent); }
   .navlinks a.active::after{ width: 100%; }
 
   .nav-cta{
     font-size: 0.78rem;
     font-weight: 600;
-    background: var(--ink);
-    color: var(--white);
+    background: var(--accent);
+    color: #FFFFFF;
     padding: 8px 14px;
     border-radius: 100px;
     text-decoration: none;
     transition: background 0.2s ease, transform 0.2s ease;
   }
-  .nav-cta:hover{ background: var(--accent); transform: translateY(-1px); }
+  .nav-cta:hover{ background: var(--accent-2); transform: translateY(-1px); }
 
   @media (max-width: 800px){
     .navlinks{ display: none; }
@@ -137,12 +139,17 @@
 
   .wrap{
     max-width: 1080px;
-    margin: 0 auto;
+    margin: 24px auto 0;
     display: grid;
     grid-template-columns: 300px 1fr;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--nav-h) - 24px);
     position: relative;
     z-index: 1;
+    background-color: var(--white);
+    background-image: radial-gradient(circle, rgba(37,65,214,0.10) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    border-radius: 20px;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.55);
   }
 
   /* ---------- Sidebar ---------- */
@@ -154,6 +161,7 @@
     align-self: start;
     height: calc(100vh - var(--nav-h));
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .name{
@@ -195,17 +203,86 @@
     cursor: pointer; border: none; font-family: var(--sans);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .print-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px rgba(47,93,87,0.35); }
+  .print-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,78,167,0.35); }
 
   /* ---------- Main ---------- */
-  main{ padding: 56px 56px 40px; }
+  main{ padding: 56px 56px 40px; position: relative; overflow: hidden; }
+
+  main::before, main::after{
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  main::before{
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(37,65,214,0.16), transparent 70%);
+    top: -80px; right: -80px;
+  }
+  main::after{
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(91,124,255,0.14), transparent 70%);
+    bottom: 10%; left: -100px;
+  }
+
+  main > *{ position: relative; z-index: 1; }
+
   section{ margin-bottom: 64px; scroll-margin-top: calc(var(--nav-h) + 16px); }
 
   .section-label{
     font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--accent); font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
   }
-  .section-label::after{ content: ""; flex: 1; height: 1px; background: var(--line); }
+  .section-label::before{
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+  .section-label::after{ content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+
+  .sec-num{
+    position: absolute;
+    right: 8px;
+    top: -34px;
+    font-family: var(--serif);
+    font-size: 4.2rem;
+    font-weight: 600;
+    color: var(--accent-soft);
+    z-index: -1;
+    user-select: none;
+    line-height: 1;
+  }
+
+  .sec-num.reveal{
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    transition-delay: 0.05s;
+  }
+  .sec-num.reveal.visible{
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  section{ position: relative; }
+
+  /* ---------- Sidebar watermark ---------- */
+  .mono-mark{
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0px);
+    font-family: var(--serif);
+    font-size: 3.4rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+    z-index: -1;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+    will-change: transform;
+  }
 
   /* ---------- Hero ---------- */
   .hero{ margin-bottom: 56px; }
@@ -221,7 +298,7 @@
     background: var(--white); border: 1px solid var(--line); border-radius: 12px;
     padding: 14px 18px; min-width: 150px; transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .stat-chip:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(23,23,15,0.08); }
+  .stat-chip:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(11,11,12,0.08); }
   .stat-num{ font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--ink); }
   .stat-label{ font-size: 0.72rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
 
@@ -235,8 +312,9 @@
     background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .skill-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(23,23,15,0.08); border-color: var(--accent); }
-  .skill-card .icon{ font-size: 1.3rem; margin-bottom: 10px; display: block; }
+  .skill-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(11,11,12,0.08); border-color: var(--accent); }
+  .skill-card .icon{ display: block; margin-bottom: 12px; color: var(--accent); }
+  .skill-card .icon svg{ width: 26px; height: 26px; display: block; }
   .skill-card h4{ font-family: var(--serif); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
   .skill-card p{ font-size: 0.82rem; color: var(--ink-soft); line-height: 1.45; }
 
@@ -261,13 +339,57 @@
     background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
-  .entry:hover .entry-card{ box-shadow: 0 16px 32px rgba(23,23,15,0.08); border-color: var(--accent-soft); }
+  .entry:hover .entry-card{ box-shadow: 0 16px 32px rgba(11,11,12,0.08); border-color: var(--accent-soft); }
 
   .entry-date{ font-size: 0.78rem; color: var(--ink-soft); font-weight: 600; letter-spacing: 0.03em; margin-bottom: 6px; }
   .entry-title{ font-family: var(--serif); font-size: 1.1rem; font-weight: 600; margin-bottom: 2px; }
   .entry-org{ font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
   .entry ul{ padding-left: 18px; color: var(--ink-soft); font-size: 0.9rem; }
   .entry ul li{ margin-bottom: 6px; }
+
+  /* ---------- Certifications ---------- */
+  .cert-grid{
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
+  }
+  .cert-card{
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .cert-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 28px rgba(11,11,12,0.08); border-color: var(--accent); }
+  .cert-card .badge{
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: var(--accent-soft);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+  }
+  .cert-card .badge svg{ width: 19px; height: 19px; }
+  .cert-card h4{ font-family: var(--serif); font-size: 0.98rem; font-weight: 600; margin-bottom: 3px; }
+  .cert-card p{ font-size: 0.8rem; color: var(--ink-soft); line-height: 1.4; }
+  .cert-card .cert-year{ font-size: 0.72rem; color: var(--accent); font-weight: 600; margin-top: 4px; display: inline-block; }
+  .cert-card .cert-link{
+    font-size: 0.76rem; font-weight: 600; color: var(--accent); text-decoration: none;
+    margin-top: 8px; display: inline-block; border-bottom: 1px solid var(--accent-soft);
+    transition: border-color 0.2s ease;
+  }
+  .cert-card .cert-link:hover{ border-color: var(--accent); }
+
+  /* ---------- Portfolio / Video edits ---------- */
+  .video-grid{
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px;
+  }
+  .video-card{
+    background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .video-card:hover{ transform: translateY(-5px); box-shadow: 0 18px 34px rgba(11,11,12,0.1); border-color: var(--accent-soft); }
+  .video-frame{
+    position: relative; width: 100%; padding-top: 56.25%; background: var(--ink);
+  }
+  .video-frame iframe, .video-frame video{
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; object-fit: cover;
+  }
+  .video-meta{ padding: 16px 18px 20px; }
+  .video-meta h4{ font-family: var(--serif); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+  .video-meta p{ font-size: 0.82rem; color: var(--ink-soft); line-height: 1.45; }
 
   /* ---------- Tools categories ---------- */
   .tool-cat{ margin-bottom: 22px; }
@@ -291,15 +413,17 @@
   .contact-card h3{ font-family: var(--serif); font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
   .contact-card p{ font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 420px; }
   .contact-card a.btn{
-    background: var(--accent-2); color: var(--ink); font-weight: 600; font-size: 0.85rem;
+    background: #FFFFFF; color: var(--accent); font-weight: 700; font-size: 0.85rem;
     padding: 12px 22px; border-radius: 100px; text-decoration: none; white-space: nowrap;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   }
-  .contact-card a.btn:hover{ transform: translateY(-2px); }
+  .contact-card a.btn:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.32); }
 
   footer{
-    padding: 24px 56px 48px; font-size: 0.78rem; color: var(--ink-soft);
-    border-top: 1px solid var(--line); position: relative; z-index: 1;
+    padding: 28px 56px 48px; font-size: 0.78rem; color: rgba(255,255,255,0.55);
+    border-top: 1px solid rgba(255,255,255,0.12); position: relative; z-index: 1;
+    text-align: center;
   }
 
   /* ---------- Scroll reveal ---------- */
@@ -340,6 +464,8 @@
     <li><a href="#profile">Profile</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#tools">Tools</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -377,6 +503,7 @@
     </ul>
 
     <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
+    <div class="mono-mark" id="monoMark" aria-hidden="true">GBV</div>
   </aside>
 
   <main>
@@ -402,6 +529,7 @@
 
     <section class="reveal">
       <div class="section-label">Profile</div>
+      <span class="sec-num reveal" aria-hidden="true">01</span>
       <p class="summary">
         Organized and detail-oriented Digital Marketing Administrator &amp;
         Virtual Assistant with expertise in social media management, email
@@ -415,6 +543,7 @@
 
     <section id="experience">
       <div class="section-label reveal">Experience</div>
+      <span class="sec-num reveal" aria-hidden="true">02</span>
 
       <div class="timeline">
         <div class="entry reveal" style="--delay: 0s">
@@ -509,42 +638,130 @@
 
     <section id="skills">
       <div class="section-label reveal">Skills</div>
+      <span class="sec-num reveal" aria-hidden="true">03</span>
       <div class="skill-grid">
         <div class="skill-card reveal" style="--delay:0s">
-          <span class="icon">📱</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></span>
           <h4>Social Media Management</h4>
           <p>Content planning, posting, and performance tracking across platforms.</p>
         </div>
         <div class="skill-card reveal" style="--delay:0.05s">
-          <span class="icon">✉️</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
           <h4>Email Marketing &amp; Automation</h4>
           <p>Autoresponders, broadcasts, A/B testing, and complex trigger flows.</p>
         </div>
         <div class="skill-card reveal" style="--delay:0.1s">
-          <span class="icon">🔗</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span>
           <h4>CRM &amp; Funnel Management</h4>
           <p>Building and optimizing landing pages, funnels, and membership sites.</p>
         </div>
         <div class="skill-card reveal" style="--delay:0.15s">
-          <span class="icon">🎬</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span>
           <h4>Content Creation &amp; Video Editing</h4>
           <p>Graphics, reels, and video content for brand and client accounts.</p>
         </div>
         <div class="skill-card reveal" style="--delay:0.2s">
-          <span class="icon">📊</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span>
           <h4>Data Tracking &amp; Reporting</h4>
           <p>KPI tracking across web, social, email, and ad performance.</p>
         </div>
         <div class="skill-card reveal" style="--delay:0.25s">
-          <span class="icon">🤝</span>
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <h4>Client Support &amp; Onboarding</h4>
           <p>Scheduling, onboarding, and day-to-day client communications.</p>
         </div>
       </div>
     </section>
 
+    <section id="certifications">
+      <div class="section-label reveal">Certifications</div>
+      <span class="sec-num reveal" aria-hidden="true">04</span>
+      <div class="cert-grid">
+
+        <div class="cert-card reveal" style="--delay:0s">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+          <div>
+            <h4>Advanced Premiere Pro Master Class</h4>
+            <p>Graphics Media Training PH</p>
+            
+            <a class="cert-link" href="https://drive.google.com/file/d/13XCa77I2B1dePEsmJYG-5rVfWLaB6COZ/view" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+
+        <div class="cert-card reveal" style="--delay:0.05s">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+          <div>
+            <h4>SEO Online Course</h4>
+            <p>ProVA</p>
+            
+            <a class="cert-link" href="https://drive.google.com/file/d/1dRHpmhfLLEe96wh9taT-dWJzqTOT73Cs/view" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+
+        <div class="cert-card reveal" style="--delay:0.1s">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+          <div>
+            <h4>Social Media VA Course</h4>
+            <p>Freelance Academy</p>
+            
+            <a class="cert-link" href="https://drive.google.com/file/d/1sL9me8fw_MlrDNf5_U6ZeAdpsKGa7WPM/view" target="_blank" rel="noopener">View certificate →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="section-label reveal">Portfolio — Video Edits</div>
+      <span class="sec-num reveal" aria-hidden="true">05</span>
+      <div class="video-grid">
+
+        <div class="video-card reveal" style="--delay:0s">
+          <div class="video-frame">
+            <video class="portfolio-video" muted loop playsinline preload="metadata" src="https://drive.google.com/uc?export=download&id=15HMPQOhFyCCFBgZs7dceZyzkKfeDMl7A"></video>
+          </div>
+          <div class="video-meta">
+            <h4>Video Edit 1</h4>
+            <p>Client video edit sample.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal" style="--delay:0.05s">
+          <div class="video-frame">
+            <video class="portfolio-video" muted loop playsinline preload="metadata" src="https://drive.google.com/uc?export=download&id=1GF7WtHdKx1FDrWObyeUTF7xCIDrcbPK5"></video>
+          </div>
+          <div class="video-meta">
+            <h4>Video Edit 2</h4>
+            <p>Client video edit sample.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal" style="--delay:0.1s">
+          <div class="video-frame">
+            <video class="portfolio-video" muted loop playsinline preload="metadata" src="https://drive.google.com/uc?export=download&id=1qBFy-AwC4FVx4ceSCMj6LqiYnoQE9svQ"></video>
+          </div>
+          <div class="video-meta">
+            <h4>Video Edit 3</h4>
+            <p>Client video edit sample.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal" style="--delay:0.15s">
+          <div class="video-frame">
+            <video class="portfolio-video" muted loop playsinline preload="metadata" src="https://drive.google.com/uc?export=download&id=1SdjFy_8wj82Ei17BI0IQTQc2lgoyYSkd"></video>
+          </div>
+          <div class="video-meta">
+            <h4>Video Edit 4</h4>
+            <p>Client video edit sample.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section id="tools">
       <div class="section-label reveal">Tools</div>
+      <span class="sec-num reveal" aria-hidden="true">06</span>
 
       <div class="tool-cat reveal">
         <h4>Marketing &amp; CRM</h4>
@@ -608,11 +825,29 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el => io.observe(el));
 
+  const monoMark = document.getElementById('monoMark');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     document.querySelector('.blob-1').style.transform = `translateY(${y * 0.08}px)`;
     document.querySelector('.blob-2').style.transform = `translateY(${y * -0.05}px)`;
+    if (monoMark){
+      monoMark.style.transform = `translateX(-50%) translateY(${-y * 0.18}px)`;
+    }
   }, { passive: true });
+
+  // Autoplay portfolio videos (muted) only while in view
+  const portfolioVideos = document.querySelectorAll('.portfolio-video');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const vid = entry.target;
+      if (entry.isIntersecting){
+        vid.play().catch(() => {});
+      } else {
+        vid.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+  portfolioVideos.forEach(v => videoObserver.observe(v));
 
   // Scrollspy for nav links
   const sections = document.querySelectorAll('main section[id]');
