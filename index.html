@@ -374,7 +374,7 @@
 
   /* ---------- Portfolio / Video edits ---------- */
   .video-grid{
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); gap: 18px; justify-content: start;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); gap: 18px; justify-content: center;
   }
   .video-card{
     background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
@@ -456,7 +456,7 @@
     .entry{ padding: 4px 10px 28px 22px; }
     .entry-card{ padding: 16px 16px; }
     .contact-card{ flex-direction: column; align-items: flex-start; padding: 26px 22px; }
-    .video-grid{ grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; justify-content: stretch; }
+    .video-grid{ grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; justify-content: center; }
     .video-card{ max-width: none; }
     .sec-num{ font-size: 3rem; top: -24px; }
   }
@@ -478,35 +478,103 @@
     .entry ul{ font-size: 0.85rem; }
   }
 
-  /* ---------- PDF export mode (temporary, toggled via JS) ---------- */
-  body.pdf-export .topnav,
-  body.pdf-export .progress,
-  body.pdf-export .blob{ display: none !important; }
-  body.pdf-export{ padding-top: 0 !important; background: #FFFFFF !important; }
-  body.pdf-export .wrap{ margin: 0 auto !important; box-shadow: none !important; border-radius: 0 !important; }
-  body.pdf-export aside{
-    position: relative !important; top: 0 !important; height: auto !important; overflow: visible !important;
-  }
-  body.pdf-export main{ overflow: visible !important; }
-  body.pdf-export .mono-mark{ position: absolute !important; }
-  body.pdf-export .reveal{ opacity: 1 !important; transform: none !important; }
-  body.pdf-export .entry:hover .entry-card,
-  body.pdf-export .skill-card:hover,
-  body.pdf-export .stat-chip:hover,
-  body.pdf-export .video-card:hover,
-  body.pdf-export .cert-card:hover{ box-shadow: none !important; transform: none !important; }
-
-  /* ---------- Print ---------- */
+  /* ---------- Print (used for the PDF download button) ---------- */
   @media print{
-    body{ background: white; padding-top: 0; }
-    .print-btn, .topnav, .progress, .blob{ display: none; }
-    aside{ position: relative; height: auto; }
-    .wrap{ grid-template-columns: 260px 1fr; }
+    @page{ margin: 0.45in; }
+
+    *{ box-shadow: none !important; text-shadow: none !important; animation: none !important; }
+
+    html, body{
+      background: #FFFFFF !important;
+      padding-top: 0 !important;
+      color: #000000 !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .topnav, .progress, .blob, .print-btn, .mono-mark, .sec-num{ display: none !important; }
+
+    .wrap{
+      display: block !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      background: #FFFFFF !important;
+      background-image: none !important;
+      min-height: 0 !important;
+    }
+
+    aside{
+      position: static !important;
+      height: auto !important;
+      overflow: visible !important;
+      width: 100% !important;
+      padding: 0 0 18px !important;
+      border-right: none !important;
+      border-bottom: 1.5pt solid #000 !important;
+      margin-bottom: 18px !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 4px 28px !important;
+      align-items: flex-start !important;
+    }
+    aside > *{ flex: 1 1 auto; }
+    .name{ width: 100%; -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; font-size: 22pt !important; }
+    .role{ width: 100%; color: #000 !important; font-weight: 600; }
+    .contact-list, .tools, .skills:first-of-type{ margin-bottom: 6px !important; }
+
+    main{
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+    main::before, main::after{ display: none !important; }
+
+    section{ margin-bottom: 20px !important; page-break-inside: avoid; scroll-margin-top: 0 !important; }
+    .section-label{ color: #000 !important; font-size: 10pt !important; }
+    .section-label::before{ background: #000 !important; }
+    .section-label::after{ background: #999 !important; }
+
+    .hero{ margin-bottom: 20px !important; }
+    .hero-headline{ font-size: 16pt !important; color: #000 !important; }
+    .hero-headline em{ color: #000 !important; text-decoration: underline; }
+    .stat-row{ gap: 8px !important; }
+    .stat-chip{ border: 1pt solid #000 !important; min-width: 0 !important; padding: 6px 10px !important; }
+
+    .summary{ font-size: 11pt !important; color: #000 !important; }
+
+    .timeline::before{ background: #000 !important; }
+    .entry{ padding: 2px 0 14px 20px !important; page-break-inside: avoid; }
+    .entry::before{ border-color: #000 !important; background: #fff !important; }
+    .entry-card{ border: 1pt solid #ccc !important; padding: 10px 12px !important; }
+    .entry-org{ color: #000 !important; font-weight: 700; }
+    .entry ul{ color: #222 !important; font-size: 9.5pt !important; }
+
+    .skill-grid, .cert-grid{ grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+    .skill-card, .cert-card{ border: 1pt solid #ccc !important; page-break-inside: avoid; }
+    .skill-card .icon, .cert-card .badge{ color: #000 !important; }
+    .cert-card .badge{ background: #eee !important; }
+
+    /* Video embeds can't render in a static PDF — show a text link instead */
+    .video-grid{ display: block !important; }
+    .video-card{ display: none !important; }
+    #portfolio::after{
+      content: "Video edit samples are viewable on the live site — see the Portfolio section, or the certificate/video links listed there.";
+      display: block; font-size: 9.5pt; color: #444; font-style: italic;
+    }
+
+    .tool-cat h4{ color: #000 !important; }
+    .tools span{ border: 1pt solid #000 !important; background: none !important; color: #000 !important; }
+
+    .contact-card{
+      background: #000 !important; color: #fff !important;
+    }
+    .contact-card a.btn{ background: #fff !important; color: #000 !important; box-shadow: none !important; }
+
+    footer{ color: #444 !important; border-top: 1pt solid #ccc !important; }
+
     .reveal{ opacity: 1 !important; transform: none !important; }
-    .entry:hover .entry-card, .skill-card:hover, .stat-chip:hover{ box-shadow: none; transform: none; }
   }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -554,7 +622,7 @@
       <li>Tech</li>
     </ul>
 
-    <button class="print-btn" id="downloadBtn" onclick="downloadResume()">Download / Print PDF</button>
+    <button class="print-btn" id="downloadBtn" onclick="window.print()">Download / Print PDF</button>
     <div class="mono-mark" id="monoMark" aria-hidden="true">GBV</div>
   </aside>
 
@@ -856,39 +924,6 @@
 </footer>
 
 <script>
-  function downloadResume(){
-    const btn = document.getElementById('downloadBtn');
-    const originalLabel = btn.textContent;
-    btn.textContent = 'Preparing PDF…';
-    btn.disabled = true;
-
-    document.body.classList.add('pdf-export');
-
-    // Wait a tick for the layout to settle after the class toggle
-    setTimeout(() => {
-      const target = document.querySelector('.wrap');
-      const opts = {
-        margin: 0,
-        filename: 'Gil-Brian-Villena-Resume.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#FFFFFF' },
-        jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['css', 'legacy'] }
-      };
-
-      html2pdf().set(opts).from(target).save().then(() => {
-        document.body.classList.remove('pdf-export');
-        btn.textContent = originalLabel;
-        btn.disabled = false;
-      }).catch(() => {
-        document.body.classList.remove('pdf-export');
-        btn.textContent = originalLabel;
-        btn.disabled = false;
-        window.print();
-      });
-    }, 150);
-  }
-
   const progressBar = document.getElementById('progress');
   function updateProgress(){
     const scrollTop = window.scrollY;
