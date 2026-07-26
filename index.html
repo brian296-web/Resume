@@ -434,7 +434,9 @@
   .tools span{
     font-family: var(--mono); font-size: 0.74rem; background: var(--accent-soft); color: var(--accent); padding: 5px 10px;
     border-radius: 5px; border: 1px solid transparent; transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: inline-flex; align-items: center; gap: 6px;
   }
+  .tools span img{ width: 13px; height: 13px; flex-shrink: 0; object-fit: contain; }
   .tools span:hover{ background: var(--ink); color: var(--white); transform: translateY(-2px); border-color: var(--ink); }
 
   /* ---------- Contact CTA ---------- */
@@ -585,14 +587,6 @@
     .skill-card .icon, .cert-card .badge{ color: #000 !important; }
     .cert-card .badge{ background: #eee !important; }
 
-    /* Video embeds can't render in a static PDF — show a text link instead */
-    .video-grid{ display: block !important; }
-    .video-card{ display: none !important; }
-    #portfolio::after{
-      content: "Video edit samples are viewable on the live site — see the Portfolio section, or the certificate/video links listed there.";
-      display: block; font-size: 9.5pt; color: #444; font-style: italic;
-    }
-
     .tool-cat h4{ color: #000 !important; }
     .tools span{ border: 1pt solid #000 !important; background: none !important; color: #000 !important; }
 
@@ -616,7 +610,6 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#tools">Tools</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -862,74 +855,42 @@
       </div>
     </section>
 
-    <section id="portfolio">
-      <div class="section-label reveal">Portfolio — Video Edits</div>
-      <span class="sec-num reveal" aria-hidden="true">05</span>
-      <div class="video-grid">
-
-        <div class="video-card reveal" style="--delay:0s">
-          <div class="video-frame">
-            <iframe src="https://www.youtube.com/embed/Tsxl4CzqKnM" title="Video edit sample 1" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal" style="--delay:0.05s">
-          <div class="video-frame">
-            <iframe src="https://www.youtube.com/embed/FdZSw8_deaM" title="Video edit sample 2" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal" style="--delay:0.1s">
-          <div class="video-frame vertical">
-            <iframe src="https://www.youtube.com/embed/HeDv0mksCu8" title="Video edit sample 3" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal" style="--delay:0.15s">
-          <div class="video-frame vertical">
-            <iframe src="https://www.youtube.com/embed/y_HFs_7TVhA" title="Video edit sample 4" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal" style="--delay:0.2s">
-          <div class="video-frame vertical">
-            <iframe src="https://www.youtube.com/embed/fVp-GSp8mFE" title="Video edit sample 5" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal" style="--delay:0.25s">
-          <div class="video-frame vertical">
-            <iframe src="https://www.youtube.com/embed/TN-lb167sIk" title="Video edit sample 6" allow="fullscreen" allowfullscreen></iframe>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
     <section id="tools">
       <div class="section-label reveal">Tools</div>
-      <span class="sec-num reveal" aria-hidden="true">06</span>
+      <span class="sec-num reveal" aria-hidden="true">05</span>
 
       <div class="tool-cat reveal">
         <h4>Marketing &amp; CRM</h4>
         <div class="tools">
-          <span>Kartra</span><span>GHL</span><span>Zapier</span>
-          <span>Active Campaign</span><span>Teachable</span><span>SocialBee</span><span>Higgsfield</span>
+          <span><img src="https://cdn.simpleicons.org/kartra" alt="" onerror="this.remove()">Kartra</span>
+          <span><img src="https://cdn.simpleicons.org/gohighlevel" alt="" onerror="this.remove()">GHL</span>
+          <span><img src="https://cdn.simpleicons.org/zapier" alt="" onerror="this.remove()">Zapier</span>
+          <span><img src="https://cdn.simpleicons.org/activecampaign" alt="" onerror="this.remove()">Active Campaign</span>
+          <span><img src="https://cdn.simpleicons.org/teachable" alt="" onerror="this.remove()">Teachable</span>
+          <span><img src="https://cdn.simpleicons.org/socialbee" alt="" onerror="this.remove()">SocialBee</span>
+          <span><img src="https://cdn.simpleicons.org/higgsfield" alt="" onerror="this.remove()">Higgsfield</span>
         </div>
       </div>
 
       <div class="tool-cat reveal">
         <h4>Creative</h4>
         <div class="tools">
-          <span>Adobe Creative Suite</span><span>Canva</span><span>Premiere Pro</span><span>CapCut</span>
+          <span><img src="https://cdn.simpleicons.org/adobecreativecloud" alt="" onerror="this.remove()">Adobe Creative Suite</span>
+          <span><img src="https://cdn.simpleicons.org/canva" alt="" onerror="this.remove()">Canva</span>
+          <span><img src="https://cdn.simpleicons.org/adobepremierepro" alt="" onerror="this.remove()">Premiere Pro</span>
+          <span><img src="https://cdn.simpleicons.org/capcut" alt="" onerror="this.remove()">CapCut</span>
         </div>
       </div>
 
       <div class="tool-cat reveal">
         <h4>Productivity &amp; Comms</h4>
         <div class="tools">
-          <span>Google Calendar</span><span>Calendly</span><span>Zoom</span>
-          <span>Slack</span><span>ChatGPT</span><span>Claude</span>
+          <span><img src="https://cdn.simpleicons.org/googlecalendar" alt="" onerror="this.remove()">Google Calendar</span>
+          <span><img src="https://cdn.simpleicons.org/calendly" alt="" onerror="this.remove()">Calendly</span>
+          <span><img src="https://cdn.simpleicons.org/zoom" alt="" onerror="this.remove()">Zoom</span>
+          <span><img src="https://cdn.simpleicons.org/slack" alt="" onerror="this.remove()">Slack</span>
+          <span><img src="https://cdn.simpleicons.org/openai" alt="" onerror="this.remove()">ChatGPT</span>
+          <span><img src="https://cdn.simpleicons.org/claude" alt="" onerror="this.remove()">Claude</span>
         </div>
       </div>
     </section>
