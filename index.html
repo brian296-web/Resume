@@ -179,6 +179,17 @@
     overflow-x: hidden;
   }
 
+  .profile-photo{
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--line), 0 12px 26px rgba(0,0,0,0.18);
+    margin-bottom: 18px;
+    display: block;
+  }
+
   .name{
     font-family: var(--serif);
     font-size: 2.35rem;
@@ -552,6 +563,7 @@
       align-items: flex-start !important;
     }
     aside > *{ flex: 1 1 auto; }
+    .profile-photo{ width: 60pt; height: 60pt; box-shadow: none !important; border: 1pt solid #000 !important; margin-bottom: 8px; }
     .name{ width: 100%; -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; font-size: 22pt !important; }
     .role{ width: 100%; color: #000 !important; font-weight: 600; }
     .contact-list, .tools, .skills:first-of-type{ margin-bottom: 6px !important; }
@@ -622,6 +634,7 @@
 
 <div class="wrap">
   <aside>
+    <img src="profile.jpg" alt="Gil Brian M. Villena" class="profile-photo">
     <div class="name">Gil Brian M. Villena</div>
     <div class="role">Digital Marketing Administrator &amp; Virtual Assistant</div>
 
