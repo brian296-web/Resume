@@ -57,6 +57,13 @@
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255,255,255,0.12);
     z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .topnav.scrolled{
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border-bottom-color: rgba(255,255,255,0.2);
   }
 
   .topnav .mark{
@@ -188,6 +195,8 @@
     box-shadow: 0 0 0 1px var(--line), 0 12px 26px rgba(0,0,0,0.18);
     margin-bottom: 18px;
     display: block;
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
   }
 
   .name{
@@ -367,13 +376,23 @@
   .entry::before{
     content: ""; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px;
     border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); z-index: 2;
+    transform: scale(0.4); opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease;
+    transition-delay: 0.15s;
   }
+  .entry.visible::before{ transform: scale(1); opacity: 1; }
   .entry:hover{ transform: translateX(4px); }
   .entry:hover::before{ background: var(--accent); }
 
   .entry-card{
     background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.6s ease;
+    opacity: 0;
+    will-change: transform;
+  }
+  .entry.visible .entry-card{
+    opacity: 1;
+    transition-delay: 0.1s, 0s, 0s, 0.1s;
   }
   .entry:hover .entry-card{ box-shadow: 0 16px 32px rgba(11,11,12,0.08); border-color: var(--accent-soft); }
 
@@ -476,6 +495,9 @@
   .reveal{ opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
   .reveal.visible{ opacity: 1; transform: translateY(0); }
   .entry.reveal{ transition-delay: var(--delay, 0s); }
+  .entry.reveal:nth-child(odd){ transform: translateY(24px) translateX(-18px); }
+  .entry.reveal:nth-child(even){ transform: translateY(24px) translateX(18px); }
+  .stat-chip.reveal{ transition-delay: var(--delay, 0s); }
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
@@ -588,9 +610,10 @@
     .summary{ font-size: 11pt !important; color: #000 !important; }
 
     .timeline::before{ background: #000 !important; }
+    .entry::before{ transform: scale(1) !important; opacity: 1 !important; }
     .entry{ padding: 2px 0 14px 20px !important; page-break-inside: avoid; }
     .entry::before{ border-color: #000 !important; background: #fff !important; }
-    .entry-card{ border: 1pt solid #ccc !important; padding: 10px 12px !important; }
+    .entry-card{ border: 1pt solid #ccc !important; padding: 10px 12px !important; opacity: 1 !important; transform: none !important; }
     .entry-org{ color: #000 !important; font-weight: 700; }
     .entry ul{ color: #222 !important; font-size: 9.5pt !important; }
 
@@ -669,15 +692,15 @@
       <h1 class="hero-headline">I run the <em>marketing operations</em> and <em>client systems</em> that keep growing businesses moving.</h1>
 
       <div class="stat-row">
-        <div class="stat-chip">
+        <div class="stat-chip reveal" style="--delay: 0.05s">
           <div class="stat-num">11+</div>
           <div class="stat-label">Years in CS &amp; Marketing</div>
         </div>
-        <div class="stat-chip">
-          <div class="stat-num">17</div>
+        <div class="stat-chip reveal" style="--delay: 0.12s">
+          <div class="stat-num">19</div>
           <div class="stat-label">Tools &amp; Platforms</div>
         </div>
-        <div class="stat-chip">
+        <div class="stat-chip reveal" style="--delay: 0.19s">
           <div class="stat-num">Email · CRM</div>
           <div class="stat-label">Content · Ops</div>
         </div>
@@ -688,13 +711,15 @@
       <div class="section-label">Profile</div>
       <span class="sec-num reveal" aria-hidden="true">01</span>
       <p class="summary">
-        Organized and detail-oriented Digital Marketing Administrator &amp;
-        Virtual Assistant with expertise in social media management, email
-        marketing, automation, and CRM systems. Skilled in Kartra, GHL,
-        Zapier, Adobe Creative Suite, and Canva, with a strong background in
-        content creation, client support, and data tracking. Adept at
-        streamlining workflows, optimizing performance, and enhancing
-        customer engagement to drive business growth.
+        Organized and detail-oriented Marketing Operations &amp; Creative
+        professional with expertise spanning AI-driven ad creative
+        production, social media strategy, email marketing automation, and
+        CRM systems. Skilled in Kartra, GoHighLevel, Zapier, Claude,
+        Higgsfield, Adobe Creative Suite, and Canva, with a strong
+        background in content creation, client onboarding, and performance
+        data tracking. Adept at scaling creative production, streamlining
+        CRM operations, and enhancing customer engagement to drive
+        business growth.
       </p>
     </section>
 
@@ -706,10 +731,21 @@
         <div class="entry reveal" style="--delay: 0s">
           <div class="entry-card">
             <div class="entry-date">2026</div>
-            <div class="entry-title">Social Media Manager</div>
+            <div class="entry-title">Marketing Operations &amp; Creative Lead</div>
             <div class="entry-org">Freelance / Virtual Assistant</div>
             <ul>
               <li>Produce and manage social content using Higgsfield, GHL, SocialBee, Canva, and Claude.</li>
+              <li>Own end-to-end AI ad creative production for a multi-vertical financial services brand — static graphics, UGC/video ads, and landing page variant testing (headline, color, font, CTA).</li>
+              <li>Repurpose top-performing organic social content into paid ad creative, closing the loop between organic and paid channels.</li>
+              <li>Coordinate cross-functional creative review and sign-off with leadership and design partners before assets go live.</li>
+              <li>Built and maintain an internal Claude creative skill library with gold-standard examples to standardize creative quality and speed across the marketing team.</li>
+              <li>Plan, write, and publish a daily content calendar (10 posts/day) for Cosmetic Dentistry and Home Improvement audience verticals.</li>
+              <li>Maintain a content structure spreadsheet and metrics dashboard to track post performance and guide content strategy.</li>
+              <li>Partner with Higgsfield and Canva to turn written content into finished, daily publish-ready graphics.</li>
+              <li>Write VSL scripts and scene-by-scene AI generation prompts (Higgsfield, Seedance) for 7-minute VSL campaigns across multiple product lines.</li>
+              <li>Produce and edit client demo and UGC-style ad videos, including multi-clip ad campaigns and product walkthroughs.</li>
+              <li>Evaluate AI video generation platforms and subscription tiers on cost vs. output quality to guide production tooling decisions.</li>
+              <li>Set up brand assets, team communication (Slack) profiles, shared work calendars, and invoicing/admin file systems to support a distributed marketing team.</li>
             </ul>
           </div>
         </div>
@@ -892,6 +928,7 @@
           <span><img src="https://cdn.simpleicons.org/canva" alt="" onerror="this.remove()">Canva</span>
           <span><img src="https://cdn.simpleicons.org/adobepremierepro" alt="" onerror="this.remove()">Premiere Pro</span>
           <span><img src="https://cdn.simpleicons.org/capcut" alt="" onerror="this.remove()">CapCut</span>
+          <span><img src="https://cdn.simpleicons.org/seedance" alt="" onerror="this.remove()">Seedance</span>
         </div>
       </div>
 
@@ -904,6 +941,7 @@
           <span><img src="https://cdn.simpleicons.org/slack" alt="" onerror="this.remove()">Slack</span>
           <span><img src="https://cdn.simpleicons.org/openai" alt="" onerror="this.remove()">ChatGPT</span>
           <span><img src="https://cdn.simpleicons.org/claude" alt="" onerror="this.remove()">Claude</span>
+          <span><img src="https://cdn.simpleicons.org/googleworkspace" alt="" onerror="this.remove()">Google Workspace</span>
         </div>
       </div>
     </section>
@@ -947,14 +985,32 @@
   revealEls.forEach(el => io.observe(el));
 
   const monoMark = document.getElementById('monoMark');
-  window.addEventListener('scroll', () => {
+  const topNav = document.querySelector('.topnav');
+  const profilePhoto = document.querySelector('.profile-photo');
+  const entryCards = document.querySelectorAll('.entry-card');
+  function handleParallaxScroll(){
     const y = window.scrollY;
     document.querySelector('.blob-1').style.transform = `translateY(${y * 0.08}px)`;
     document.querySelector('.blob-2').style.transform = `translateY(${y * -0.05}px)`;
     if (monoMark){
       monoMark.style.transform = `translateX(-50%) translateY(${-y * 0.18}px)`;
     }
-  }, { passive: true });
+    if (profilePhoto){
+      profilePhoto.style.transform = `translateY(${Math.min(y * 0.06, 14)}px)`;
+    }
+    if (topNav){
+      topNav.classList.toggle('scrolled', y > 40);
+    }
+    const viewportMid = window.innerHeight / 2;
+    entryCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardMid = rect.top + rect.height / 2;
+      const offset = Math.max(-16, Math.min(16, (cardMid - viewportMid) * 0.04));
+      card.style.transform = `translateY(${offset}px)`;
+    });
+  }
+  window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+  handleParallaxScroll();
 
   // Scrollspy for nav links
   const sections = document.querySelectorAll('main section[id]');
