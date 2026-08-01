@@ -347,6 +347,22 @@
   .stat-num{ font-family: var(--serif); font-size: 1.5rem; font-weight: 800; color: var(--ink); }
   .stat-label{ font-family: var(--mono); font-size: 0.68rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.02em; margin-top: 2px; }
 
+  .hero-tools{ margin-top: 28px; }
+  .hero-tools-label{
+    font-family: var(--mono); font-size: 0.68rem; color: var(--ink-soft); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 12px;
+  }
+  .hero-tools-row{ display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-tools-row .tool-badge{
+    width: 38px; height: 38px; border-radius: 10px; background: var(--white); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .hero-tools-row .tool-badge:hover{
+    transform: translateY(-4px); box-shadow: 0 10px 20px rgba(11,11,12,0.1); border-color: var(--accent);
+  }
+  .hero-tools-row .tool-badge img{ width: 18px; height: 18px; object-fit: contain; }
+
   .summary{ font-family: var(--sans); font-size: 0.96rem; font-weight: 400; line-height: 1.55; max-width: 620px; color: var(--ink-soft); }
 
   /* ---------- Skills grid ---------- */
@@ -523,9 +539,8 @@
     .entry{ padding: 4px 10px 28px 22px; }
     .entry-card{ padding: 16px 16px; }
     .contact-card{ flex-direction: column; align-items: flex-start; padding: 26px 22px; }
-    .video-grid{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; justify-content: start; }
-    .video-card{ max-width: none; }
     .sec-num{ font-size: 3rem; top: -24px; }
+    .profile-photo{ width: 80px; height: 80px; }
   }
 
   @media (max-width: 480px){
@@ -542,6 +557,8 @@
     main{ padding: 26px 16px 32px; }
     aside{ padding: 28px 18px; }
     .entry ul{ font-size: 0.85rem; }
+    .profile-photo{ width: 68px; height: 68px; }
+    .tools span{ font-size: 0.7rem; padding: 4px 8px; }
   }
 
   /* ---------- Print (used for the PDF download button) ---------- */
@@ -575,20 +592,20 @@
       height: auto !important;
       overflow: visible !important;
       width: 100% !important;
-      padding: 0 0 18px !important;
+      padding: 0 0 16px !important;
       border-right: none !important;
       border-bottom: 1.5pt solid #000 !important;
       margin-bottom: 18px !important;
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 4px 28px !important;
-      align-items: flex-start !important;
+      display: block !important;
     }
-    aside > *{ flex: 1 1 auto; }
-    .profile-photo{ width: 60pt !important; height: 60pt !important; flex: 0 0 60pt !important; box-shadow: none !important; border: 1pt solid #000 !important; margin-bottom: 8px; }
-    .name{ width: 100%; -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; font-size: 22pt !important; }
-    .role{ width: 100%; color: #000 !important; font-weight: 600; }
-    .contact-list, .tools, .skills:first-of-type{ margin-bottom: 6px !important; }
+    .profile-photo{ width: 50pt !important; height: 50pt !important; flex: none !important; margin-bottom: 8pt !important; box-shadow: none !important; border: 1pt solid #000 !important; }
+    .name{ -webkit-text-fill-color: #000 !important; background: none !important; color: #000 !important; font-size: 20pt !important; margin-bottom: 2pt !important; }
+    .role{ color: #000 !important; font-weight: 600; margin-bottom: 8pt !important; }
+    .contact-list{ margin-bottom: 8pt !important; }
+    .side-heading{ margin-top: 8pt !important; margin-bottom: 4pt !important; }
+    .side-heading::before{ color: #000 !important; }
+    .skills{ margin-bottom: 6pt !important; }
+    .skills li{ padding: 2pt 0 !important; font-size: 9pt !important; border-bottom: none !important; color: #000 !important; }
 
     main{
       padding: 0 !important;
@@ -703,6 +720,20 @@
         <div class="stat-chip reveal" style="--delay: 0.19s">
           <div class="stat-num">Email · CRM</div>
           <div class="stat-label">Content · Ops</div>
+        </div>
+      </div>
+
+      <div class="hero-tools reveal" style="--delay: 0.25s">
+        <div class="hero-tools-label">// tools i work with daily</div>
+        <div class="hero-tools-row">
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/kartra" alt="Kartra" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/canva" alt="Canva" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/adobepremierepro" alt="Premiere Pro" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/slack" alt="Slack" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/openai" alt="ChatGPT" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.simpleicons.org/claude" alt="Claude" onerror="this.parentElement.style.display='none'"></span>
         </div>
       </div>
     </section>
