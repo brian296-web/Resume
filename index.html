@@ -352,17 +352,32 @@
     font-family: var(--mono); font-size: 0.68rem; color: var(--ink-soft); text-transform: uppercase;
     letter-spacing: 0.06em; margin-bottom: 12px;
   }
-  .hero-tools-row{ display: flex; flex-wrap: wrap; gap: 10px; }
-  .hero-tools-row .tool-badge{
+  .hero-tools-marquee{
+    overflow: hidden;
+    width: 100%;
+    max-width: 480px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .hero-tools-track{
+    display: flex; align-items: center; gap: 10px; width: max-content;
+    animation: hero-tools-scroll 18s linear infinite;
+  }
+  .hero-tools-marquee:hover .hero-tools-track{ animation-play-state: paused; }
+  @keyframes hero-tools-scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  .tool-badge{
     width: 38px; height: 38px; border-radius: 10px; background: var(--white); border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .hero-tools-row .tool-badge:hover{
+  .tool-badge:hover{
     transform: translateY(-4px); box-shadow: 0 10px 20px rgba(11,11,12,0.1); border-color: var(--accent);
   }
-  .hero-tools-row .tool-badge img{ width: 18px; height: 18px; object-fit: contain; }
-  .hero-tools-row .tool-badge .icon-mask{ width: 18px; height: 18px; }
+  .tool-badge img{ width: 18px; height: 18px; object-fit: contain; }
+  .tool-badge .icon-mask{ width: 18px; height: 18px; }
 
   .summary{ font-family: var(--sans); font-size: 0.96rem; font-weight: 400; line-height: 1.55; max-width: 620px; color: var(--ink-soft); }
 
@@ -530,6 +545,7 @@
     html{ scroll-behavior: auto; }
     .reveal{ opacity: 1 !important; transform: none !important; transition: none !important; }
     .blob{ display: none; }
+    .hero-tools-track{ animation: none !important; }
   }
 
   /* ---------- Responsive ---------- */
@@ -586,6 +602,9 @@
     }
 
     .topnav, .progress, .blob, .print-btn, .mono-mark, .sec-num{ display: none !important; }
+    .hero-tools-marquee{ overflow: visible !important; -webkit-mask-image: none !important; mask-image: none !important; max-width: 100% !important; }
+    .hero-tools-track{ animation: none !important; transform: none !important; flex-wrap: wrap !important; }
+    .tool-badge[aria-hidden="true"]{ display: none !important; }
 
     .wrap{
       display: block !important;
@@ -736,15 +755,25 @@
 
       <div class="hero-tools reveal" style="--delay: 0.25s">
         <div class="hero-tools-label">// tools i work with daily</div>
-        <div class="hero-tools-row">
-          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/kartra.svg" alt="Kartra" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="ghl-logo.png" alt="GoHighLevel" class="logo-color"></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Zapier" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg'); background-color:#FF4A00;"></span></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Canva" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg'); background-color:#00C4CC;"></span></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Premiere Pro" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg'); background-color:#9999FF;"></span></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Slack" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg'); background-color:#4A154B;"></span></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="ChatGPT" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg'); background-color:#412991;"></span></span>
-          <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Claude" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/claude.svg'); background-color:#D97757;"></span></span>
+        <div class="hero-tools-marquee">
+          <div class="hero-tools-track">
+            <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/kartra.svg" alt="Kartra" onerror="this.parentElement.style.display='none'"></span>
+            <span class="tool-badge"><img src="ghl-logo.png" alt="GoHighLevel" class="logo-color"></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Zapier" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg'); background-color:#FF4A00;"></span></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Canva" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg'); background-color:#00C4CC;"></span></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Premiere Pro" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg'); background-color:#9999FF;"></span></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Slack" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg'); background-color:#4A154B;"></span></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="ChatGPT" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg'); background-color:#412991;"></span></span>
+            <span class="tool-badge"><span class="icon-mask" role="img" aria-label="Claude" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/claude.svg'); background-color:#D97757;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/kartra.svg" alt="" onerror="this.parentElement.style.display='none'"></span>
+            <span class="tool-badge" aria-hidden="true"><img src="ghl-logo.png" alt="" class="logo-color"></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg'); background-color:#FF4A00;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg'); background-color:#00C4CC;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg'); background-color:#9999FF;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg'); background-color:#4A154B;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg'); background-color:#412991;"></span></span>
+            <span class="tool-badge" aria-hidden="true"><span class="icon-mask" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/claude.svg'); background-color:#D97757;"></span></span>
+          </div>
         </div>
       </div>
     </section>
@@ -959,7 +988,7 @@
           <span><img src="activecampaign-logo.png" alt="ActiveCampaign" class="logo-color logo-wordmark"></span>
           <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/teachable.svg" alt="" onerror="this.remove()">Teachable</span>
           <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/socialbee.svg" alt="" onerror="this.remove()">SocialBee</span>
-          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/higgsfield.svg" alt="" onerror="this.remove()">Higgsfield</span>
+          <span><img src="higgsfield-logo.png" alt="" class="logo-color">Higgsfield</span>
         </div>
       </div>
 
@@ -969,7 +998,7 @@
           <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobecreativecloud.svg'); background-color:#DA1F26;"></span>Adobe Creative Suite</span>
           <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg'); background-color:#00C4CC;"></span>Canva</span>
           <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg'); background-color:#9999FF;"></span>Premiere Pro</span>
-          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/capcut.svg" alt="" onerror="this.remove()">CapCut</span>
+          <span><img src="capcut-logo.png" alt="" class="logo-color">CapCut</span>
           <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/seedance.svg" alt="" onerror="this.remove()">Seedance</span>
         </div>
       </div>
@@ -977,7 +1006,7 @@
       <div class="tool-cat reveal">
         <h4>Productivity &amp; Comms</h4>
         <div class="tools">
-          <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlecalendar.svg'); background-color:#4285F4;"></span>Google Calendar</span>
+          <span><img src="googlecalendar-logo.png" alt="" class="logo-color">Google Calendar</span>
           <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/calendly.svg'); background-color:#006BFF;"></span>Calendly</span>
           <span><img src="zoom-logo.png" alt="" class="logo-color">Zoom</span>
           <span><span class="icon-mask" aria-hidden="true" style="--mask-url:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg'); background-color:#4A154B;"></span>Slack</span>
