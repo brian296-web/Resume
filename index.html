@@ -361,7 +361,8 @@
   .hero-tools-row .tool-badge:hover{
     transform: translateY(-4px); box-shadow: 0 10px 20px rgba(11,11,12,0.1); border-color: var(--accent);
   }
-  .hero-tools-row .tool-badge img{ width: 18px; height: 18px; object-fit: contain; }
+  .hero-tools-row .tool-badge img{ width: 18px; height: 18px; object-fit: contain; opacity: 0.5; transition: opacity 0.25s ease; }
+  .hero-tools-row .tool-badge:hover img{ opacity: 1; }
 
   .summary{ font-family: var(--sans); font-size: 0.96rem; font-weight: 400; line-height: 1.55; max-width: 620px; color: var(--ink-soft); }
 
@@ -484,6 +485,7 @@
   }
   .tools span img{ width: 13px; height: 13px; flex-shrink: 0; object-fit: contain; }
   .tools span:hover{ background: var(--ink); color: var(--white); transform: translateY(-2px); border-color: var(--ink); }
+  .tools span:hover img{ filter: invert(1) brightness(2); }
 
   /* ---------- Contact CTA ---------- */
   .contact-card{
@@ -726,14 +728,14 @@
       <div class="hero-tools reveal" style="--delay: 0.25s">
         <div class="hero-tools-label">// tools i work with daily</div>
         <div class="hero-tools-row">
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/kartra" alt="Kartra" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/canva" alt="Canva" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/adobepremierepro" alt="Premiere Pro" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/slack" alt="Slack" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/openai" alt="ChatGPT" onerror="this.parentElement.style.display='none'"></span>
-          <span class="tool-badge"><img src="https://cdn.simpleicons.org/claude" alt="Claude" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/kartra.svg" alt="Kartra" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gohighlevel.svg" alt="GoHighLevel" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg" alt="Zapier" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg" alt="Canva" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg" alt="Premiere Pro" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg" alt="Slack" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="ChatGPT" onerror="this.parentElement.style.display='none'"></span>
+          <span class="tool-badge"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/claude.svg" alt="Claude" onerror="this.parentElement.style.display='none'"></span>
         </div>
       </div>
     </section>
@@ -942,37 +944,37 @@
       <div class="tool-cat reveal">
         <h4>Marketing &amp; CRM</h4>
         <div class="tools">
-          <span><img src="https://cdn.simpleicons.org/kartra" alt="" onerror="this.remove()">Kartra</span>
-          <span><img src="https://cdn.simpleicons.org/gohighlevel" alt="" onerror="this.remove()">GHL</span>
-          <span><img src="https://cdn.simpleicons.org/zapier" alt="" onerror="this.remove()">Zapier</span>
-          <span><img src="https://cdn.simpleicons.org/activecampaign" alt="" onerror="this.remove()">Active Campaign</span>
-          <span><img src="https://cdn.simpleicons.org/teachable" alt="" onerror="this.remove()">Teachable</span>
-          <span><img src="https://cdn.simpleicons.org/socialbee" alt="" onerror="this.remove()">SocialBee</span>
-          <span><img src="https://cdn.simpleicons.org/higgsfield" alt="" onerror="this.remove()">Higgsfield</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/kartra.svg" alt="" onerror="this.remove()">Kartra</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gohighlevel.svg" alt="" onerror="this.remove()">GHL</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zapier.svg" alt="" onerror="this.remove()">Zapier</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/activecampaign.svg" alt="" onerror="this.remove()">Active Campaign</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/teachable.svg" alt="" onerror="this.remove()">Teachable</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/socialbee.svg" alt="" onerror="this.remove()">SocialBee</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/higgsfield.svg" alt="" onerror="this.remove()">Higgsfield</span>
         </div>
       </div>
 
       <div class="tool-cat reveal">
         <h4>Creative</h4>
         <div class="tools">
-          <span><img src="https://cdn.simpleicons.org/adobecreativecloud" alt="" onerror="this.remove()">Adobe Creative Suite</span>
-          <span><img src="https://cdn.simpleicons.org/canva" alt="" onerror="this.remove()">Canva</span>
-          <span><img src="https://cdn.simpleicons.org/adobepremierepro" alt="" onerror="this.remove()">Premiere Pro</span>
-          <span><img src="https://cdn.simpleicons.org/capcut" alt="" onerror="this.remove()">CapCut</span>
-          <span><img src="https://cdn.simpleicons.org/seedance" alt="" onerror="this.remove()">Seedance</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobecreativecloud.svg" alt="" onerror="this.remove()">Adobe Creative Suite</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/canva.svg" alt="" onerror="this.remove()">Canva</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/adobepremierepro.svg" alt="" onerror="this.remove()">Premiere Pro</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/capcut.svg" alt="" onerror="this.remove()">CapCut</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/seedance.svg" alt="" onerror="this.remove()">Seedance</span>
         </div>
       </div>
 
       <div class="tool-cat reveal">
         <h4>Productivity &amp; Comms</h4>
         <div class="tools">
-          <span><img src="https://cdn.simpleicons.org/googlecalendar" alt="" onerror="this.remove()">Google Calendar</span>
-          <span><img src="https://cdn.simpleicons.org/calendly" alt="" onerror="this.remove()">Calendly</span>
-          <span><img src="https://cdn.simpleicons.org/zoom" alt="" onerror="this.remove()">Zoom</span>
-          <span><img src="https://cdn.simpleicons.org/slack" alt="" onerror="this.remove()">Slack</span>
-          <span><img src="https://cdn.simpleicons.org/openai" alt="" onerror="this.remove()">ChatGPT</span>
-          <span><img src="https://cdn.simpleicons.org/claude" alt="" onerror="this.remove()">Claude</span>
-          <span><img src="https://cdn.simpleicons.org/googleworkspace" alt="" onerror="this.remove()">Google Workspace</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlecalendar.svg" alt="" onerror="this.remove()">Google Calendar</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/calendly.svg" alt="" onerror="this.remove()">Calendly</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/zoom.svg" alt="" onerror="this.remove()">Zoom</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/slack.svg" alt="" onerror="this.remove()">Slack</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="" onerror="this.remove()">ChatGPT</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/claude.svg" alt="" onerror="this.remove()">Claude</span>
+          <span><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googleworkspace.svg" alt="" onerror="this.remove()">Google Workspace</span>
         </div>
       </div>
     </section>
