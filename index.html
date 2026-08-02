@@ -172,7 +172,6 @@
     background-size: 24px 24px;
     border-radius: 20px;
     box-shadow: 0 40px 90px rgba(0,0,0,0.55);
-    perspective: 1800px;
   }
 
   /* ---------- Sidebar ---------- */
@@ -243,7 +242,7 @@
   .print-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,155,150,0.35); }
 
   /* ---------- Main ---------- */
-  main{ padding: 28px 56px 40px; position: relative; overflow: hidden; will-change: transform; }
+  main{ padding: 28px 56px 40px; position: relative; overflow: hidden; }
 
   main::before, main::after{
     content: "";
@@ -565,6 +564,13 @@
     .contact-card{ flex-direction: column; align-items: flex-start; padding: 26px 22px; }
     .sec-num{ font-size: 3rem; top: -24px; }
     .profile-photo{ width: 80px; height: 80px; }
+    .hero-tools{ margin-top: 22px; }
+    .hero-tools-marquee{ max-width: 100%; }
+    .hero-tools-track{ gap: 10px; }
+    .tool-badge{ width: 42px; height: 42px; border-radius: 11px; }
+    .tool-badge img{ width: 22px; height: 22px; }
+    .tool-badge img.logo-wordmark{ height: 14px; }
+    .tool-badge .icon-mask{ width: 22px; height: 22px; }
   }
 
   @media (max-width: 480px){
@@ -583,6 +589,10 @@
     .entry ul{ font-size: 0.85rem; }
     .profile-photo{ width: 68px; height: 68px; }
     .tools span{ font-size: 0.7rem; padding: 4px 8px; }
+    .tool-badge{ width: 38px; height: 38px; border-radius: 10px; }
+    .tool-badge img{ width: 20px; height: 20px; }
+    .tool-badge .icon-mask{ width: 20px; height: 20px; }
+    .hero-tools-track{ gap: 8px; }
   }
 
   /* ---------- Print (used for the PDF download button) ---------- */
@@ -1076,8 +1086,6 @@
   const topNav = document.querySelector('.topnav');
   const profilePhoto = document.querySelector('.profile-photo');
   const entryCards = document.querySelectorAll('.entry-card');
-  const mainEl = document.querySelector('main');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function handleParallaxScroll(){
     const y = window.scrollY;
     document.querySelector('.blob-1').style.transform = `translateY(${y * 0.08}px)`;
@@ -1095,11 +1103,6 @@
       const offset = Math.max(-16, Math.min(16, (cardMid - viewportMid) * 0.04));
       card.style.transform = `translateY(${offset}px)`;
     });
-    if (mainEl && !prefersReducedMotion){
-      const tiltProgress = Math.min(y / 420, 1);
-      const deg = (1 - tiltProgress) * 4;
-      mainEl.style.transform = `rotateX(${deg}deg)`;
-    }
   }
   window.addEventListener('scroll', handleParallaxScroll, { passive: true });
   handleParallaxScroll();
